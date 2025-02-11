@@ -30,7 +30,7 @@ import { TresCanvas } from '@tresjs/core'
 ```
 ````
 
-<div v-click="1" class="mt-4">
+<div class="mt-4" v-click="1">
 
 - Clear-color could be the sky.
 - Here "full screen", but can be any container in DOM.
