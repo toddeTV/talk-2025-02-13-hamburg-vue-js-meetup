@@ -11,7 +11,7 @@ layout: two-cols
 <WindowWrapper max-height>
 </WindowWrapper>
 
-<!-- 
+<!--
 - left: code
 - right: implementation
 -->
