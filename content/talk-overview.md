@@ -16,7 +16,7 @@ layout: basic
 
 <VClicks class="text-xl flex flex-col gap-y-5">
 
-- Why 3D in the web?<br>
+- Why 3D on the web?<br>
   <span class="text-sm color-gray-500">Identify potential use-cases and think outside the box.</span>
 - Understand 3D scenes in Vue<br>
   <span class="text-sm color-gray-500">Setup, Tooling, Hardware Pipeline, Scene-Graph, etc.</span>
@@ -28,5 +28,5 @@ layout: basic
 </VClicks>
 
 <!--
-- `Why 3D in the web?` = Motivation
+- `Why 3D on the web?` = Motivation
 -->
