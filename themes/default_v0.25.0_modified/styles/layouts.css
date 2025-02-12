@@ -1,22 +1,22 @@
+.baseColor {
+  color: var(--slidev-theme-primary);
+}
+
+.complementaryColor {
+  color: var(--slidev-theme-complementary);
+}
+
+.border-baseColor {
+  border-color: var(--slidev-theme-primary);
+}
+
+.border-complementaryColor {
+  border-color: var(--slidev-theme-complementary);
+}
+
 .slidev-layout {
   /* TODO remove in prod*/
   @apply border;
-
-  .baseColor {
-    color: var(--slidev-theme-primary);
-  }
-
-  .complementaryColor {
-    color: var(--slidev-theme-complementary);
-  }
-
-  .border-baseColor {
-    border-color: var(--slidev-theme-primary);
-  }
-
-  .border-complementaryColor {
-    border-color: var(--slidev-theme-complementary);
-  }
 
   /* h1 + p {
     @apply -mt-2 opacity-50 mb-4;

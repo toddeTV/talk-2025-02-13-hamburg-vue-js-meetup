@@ -62,5 +62,53 @@ src: content/why-3d-on-the-web.md
 ---
 
 ---
+src: content/understand-3d-scenes.0.md
+---
+
+---
+src: content/understand-3d-scenes.1.md
+---
+
+---
+src: content/understand-3d-scenes.2.md
+---
+
+---
+src: content/understand-3d-scenes.3.md
+---
+
+---
+src: content/understand-3d-scenes.4.md
+---
+
+---
+src: content/understand-3d-scenes.5.md
+---
+
+---
+src: content/understand-3d-scenes.6.md
+---
+
+---
+src: content/understand-3d-scenes.7.md
+---
+
+---
+src: content/understand-3d-scenes.8.md
+---
+
+---
+src: content/understand-3d-scenes.9.md
+---
+
+---
+src: content/understand-3d-scenes.10.md
+---
+
+---
+src: content/understand-3d-scenes.11.md
+---
+
+---
 src: content/end.md
 ---

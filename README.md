@@ -118,6 +118,7 @@ Honorable mentions to people that helped this project:
 Respectable mentions to projects that helped this project:
 
 - My own talk titled `Your Own Vite Plugin? That's as easy as 1 2 3(D)` that was held on 2025-01-29 at the [Vue.js Nation](https://vuejsnation.com/) 2025 conference (online) was the foundation of this project. See the project code here: [https://github.com/toddeTV/talk_2025-01-29_vue-js-nation-conference](https://github.com/toddeTV/talk_2025-01-29_vue-js-nation-conference)
+- My own talk titled `Playing with Nuxt in 3D` that was held on 2024-11-12 at the [NuxtNation](https://nuxtnation.com/) 2024 conference (online) was the foundation of this project. See the project code here: [https://github.com/toddeTV/talk_2024-11-12_NuxtNation-conference](https://github.com/toddeTV/talk_2024-11-12_NuxtNation-conference)
 
 Used programs/ softwares, services and dependencies - besides the ones in `./package.json`:
 
@@ -129,6 +130,9 @@ Used assets/ materials including images and 3D models:
 
 - Game Project `zlig` hosted on [https://zlig.net/](https://zlig.net/) with source code on [https://github.com/toddeTV/zlig](https://github.com/toddeTV/zlig). Included materials in `zlig` are listed separately there as they are not part of this presentation project.
 - Portrait from `Thorsten Seyschab` by [Franziska Kestel](https://franziskakestel.de/).
+- Logo for `ThreeJS` from [https://discourse.threejs.org/t/three-js-svg-logo/21835](https://discourse.threejs.org/t/three-js-svg-logo/21835).
+- Logo for `WebGL` from [https://en.m.wikipedia.org/wiki/File:WebGL_Logo.svg](https://en.m.wikipedia.org/wiki/File:WebGL_Logo.svg).
+- ["Mini Cartoon Keyboard"](https://sketchfab.com/3d-models/mini-cartoon-keyboard-9d22365e37384b31b90dc9d5b3399ddc) by Rafael Dias, licensed under [Creative Commons Attribution](https://creativecommons.org/licenses/by/4.0/).
 
 ## License
 
