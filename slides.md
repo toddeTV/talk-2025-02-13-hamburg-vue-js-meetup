@@ -146,10 +146,6 @@ src: content/end.md
 ---
 
 ---
-src: content/imperative-vs-declarative.md
----
-
----
 src: content/load-a-gltf-file.md
 ---
 
