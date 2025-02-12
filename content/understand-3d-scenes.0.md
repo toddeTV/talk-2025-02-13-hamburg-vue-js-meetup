@@ -2,14 +2,13 @@
 layout: two-cols
 ---
 
-# Understand 3D Scenes in Vue
+<Understand3DScenesHeadline />
 
 ::left::
 
-::right::
+<div class="w-full h-23"></div>
 
-<WindowWrapper max-height>
-</WindowWrapper>
+::right::
 
 <!--
 - left: code

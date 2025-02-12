@@ -2,11 +2,11 @@
 layout: two-cols
 ---
 
-# Understand 3D Scenes in Vue
+<Understand3DScenesHeadline />
 
 ::left::
 
-<Understand3DScenesHeadlines :step="2" />
+<div class="w-full h-23"></div>
 
 ````md magic-move {lines: true}
 ```vue {*}
@@ -38,7 +38,3 @@ import { TresCanvas } from '@tresjs/core'
 </div>
 
 ::right::
-
-<WindowWrapper max-height>
-  <div class="h-full h-full bg-[#E1F4FF]" v-click="1"></div>
-</WindowWrapper>

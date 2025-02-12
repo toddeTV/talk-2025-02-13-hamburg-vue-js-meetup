@@ -2,11 +2,11 @@
 layout: two-cols
 ---
 
-# Understand 3D Scenes in Vue
+<Understand3DScenesHeadline />
 
 ::left::
 
-<Understand3DScenesHeadlines :step="1" />
+<div class="w-full h-23"></div>
 
 <div class="flex flex-col gap-3 mt-3">
     <div
@@ -89,6 +89,3 @@ layout: two-cols
 </div>
 
 ::right::
-
-<WindowWrapper max-height>
-</WindowWrapper>
