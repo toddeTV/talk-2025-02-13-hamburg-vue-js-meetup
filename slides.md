@@ -122,6 +122,14 @@ src: content/load-a-gltf-file-problems.md
 ---
 
 ---
+src: content/gltf-type-generation.md
+---
+
+---
+src: content/gltf-type-generation-example.md
+---
+
+---
 src: content/load-a-gltf-file-solution.md
 ---
 
