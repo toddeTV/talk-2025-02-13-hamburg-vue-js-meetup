@@ -8,20 +8,7 @@ layout: two-cols
 
 <div class="w-full h-23"></div>
 
-````md magic-move {lines: true}
-```vue {7}
-<script setup lang="ts">
-// [...]
-</script>
-
-<template>
-  <TresCanvas clear-color="E1F4FF">
-    <SomeMeshWeWantToModifyInScriptSetup />
-  </TresCanvas>
-</template>
-```
-````
-
-How to get the object from the `template` back in the `script`?
+Imagine it!<br>
+You can do it because you are awesome Devs! <mdi-heart class="baseColor mr-2" />
 
 ::right::
