@@ -1,7 +1,7 @@
 {
   "name": "@todde.tv/talk-2025-02-13-hamburg-vue-js-meetup",
   "type": "module",
-  "version": "2025-02-13-rc.0",
+  "version": "2025-02-13",
   "packageManager": "pnpm@9.15.4",
   "description": "Slides for my talk titled `3D or Not 3D? Vue and Beyond!` on 2025-02-13 at the Hamburg Vue.js Meetup in Hamburg.",
   "author": "Thorsten Seyschab <business@todde.tv> (https://todde.tv/)",
