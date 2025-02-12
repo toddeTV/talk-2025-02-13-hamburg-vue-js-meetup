@@ -36,6 +36,9 @@ importers:
       '@tresjs/core':
         specifier: ~4.3.3
         version: 4.3.3(three@0.173.0)(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
+      '@tresjs/post-processing':
+        specifier: ~2.1.0
+        version: 2.1.0(@tresjs/core@4.3.3(three@0.173.0)(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(three@0.173.0)(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
       '@tsconfig/node20':
         specifier: ~20.1.4
         version: 20.1.4
@@ -66,6 +69,9 @@ importers:
       npm-run-all2:
         specifier: ~7.0.2
         version: 7.0.2
+      postprocessing:
+        specifier: ~6.36.7
+        version: 6.36.7(three@0.173.0)
       prettier-plugin-slidev:
         specifier: ~1.0.5
         version: 1.0.5(prettier@3.4.2)
@@ -993,6 +999,13 @@ packages:
     resolution: {integrity: sha512-AIFP0u5Hp/9LjifndcFEQWkucWYI72vpUAvJzeOArMdrGN/slKXf8XYP/GKm0BMbPQCu6/eg/LqghZO5tOQ81A==}
     peerDependencies:
       three: '>=0.133'
+      vue: '>=3.4'
+
+  '@tresjs/post-processing@2.1.0':
+    resolution: {integrity: sha512-M0U9mM7QgBV0jEBY8o9UersdSVAYBp3c+fjw3NXBf5om5KMMGJV0eMjka6TosmywlnFC5YtI9pQ87bau+hDvUg==}
+    peerDependencies:
+      '@tresjs/core': '>=4.0'
+      three: '>=0.169'
       vue: '>=3.4'
 
   '@tsconfig/node20@20.1.4':
@@ -3287,6 +3300,11 @@ packages:
     resolution: {integrity: sha512-6oz2beyjc5VMn/KV1pPw8fliQkhBXrVn1Z3TVyqZxU8kZpzEKhBdmCFqI6ZbmGtamQvQGuU1sgPTk8ZrXDD7jQ==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postprocessing@6.36.7:
+    resolution: {integrity: sha512-X6B3xt9dy4Osv19kqnVGqV01I2Tm7VwV6rLegRIZkZJPH3ozKLypHSBK1xKx7P/Ols++OkXe6L8dBGTaDUL5aw==}
+    peerDependencies:
+      three: '>= 0.157.0 < 0.174.0'
+
   potpack@1.0.2:
     resolution: {integrity: sha512-choctRBIV9EMT9WGAZHn3V7t0Z2pMQyl0EZE6pFc/6ml3ssw7Dlf/oAOvFwjm1HVsqfQN8GfeFyJ+d8tRzqueQ==}
 
@@ -5213,6 +5231,16 @@ snapshots:
       '@alvarosabu/utils': 3.2.0
       '@vue/devtools-api': 6.6.4
       '@vueuse/core': 12.5.0(typescript@5.7.3)
+      three: 0.173.0
+      vue: 3.5.13(typescript@5.7.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@tresjs/post-processing@2.1.0(@tresjs/core@4.3.3(three@0.173.0)(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3)))(three@0.173.0)(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))':
+    dependencies:
+      '@tresjs/core': 4.3.3(three@0.173.0)(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
+      '@vueuse/core': 12.5.0(typescript@5.7.3)
+      postprocessing: 6.36.7(three@0.173.0)
       three: 0.173.0
       vue: 3.5.13(typescript@5.7.3)
     transitivePeerDependencies:
@@ -8023,6 +8051,10 @@ snapshots:
       nanoid: 3.3.8
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  postprocessing@6.36.7(three@0.173.0):
+    dependencies:
+      three: 0.173.0
 
   potpack@1.0.2: {}
 
