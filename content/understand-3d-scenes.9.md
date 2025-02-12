@@ -9,7 +9,7 @@ layout: two-cols
 <div class="w-full h-23"></div>
 
 ````md magic-move {lines: true}
-```vue {4-6,14}
+```vue {4-6,15}
 <script setup lang="ts">
 import { GLTFModel } from '@tresjs/cientos'
 // [...]
@@ -23,8 +23,8 @@ function modelClicked(e) {
     <!-- [...] -->
     <Suspense>
       <GLTFModel path="keyboard.gltf"
-        @click="clicked"
-      />
+        cast-shadow receive-shadow
+        @click="clicked" />
     </Suspense>
     <!-- [...] -->
   </TresCanvas>

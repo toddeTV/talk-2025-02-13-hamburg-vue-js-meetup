@@ -9,7 +9,7 @@ layout: two-cols
 <div class="w-full h-23"></div>
 
 ````md magic-move {lines: true}
-```vue {2,9-11}
+```vue {2,9-12}
 <script setup lang="ts">
 import { GLTFModel } from '@tresjs/cientos'
 // [...]
@@ -19,7 +19,8 @@ import { GLTFModel } from '@tresjs/cientos'
   <TresCanvas clear-color="E1F4FF">
     <!-- [...] -->
     <Suspense>
-      <GLTFModel path="keyboard.gltf" />
+      <GLTFModel path="keyboard.gltf"
+        cast-shadow receive-shadow />
     </Suspense>
     <!-- [...] -->
   </TresCanvas>

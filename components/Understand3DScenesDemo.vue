@@ -25,8 +25,7 @@ const props = defineProps<{
 function isStep(page: number | number[], click?: number | number[]) {
   const pages = Array.isArray(page) ? page : [page]
   const clicks = Array.isArray(click) ? click : [click]
-
-  if (!click) {
+  if (click === undefined) {
     return pages.includes(props.page)
   }
   return pages.includes(props.page) && clicks.includes(props.click)
@@ -36,7 +35,7 @@ function isStepMin(page: number) {
   return props.page >= page
 }
 
-function _isStepMax(page: number) {
+function isStepMax(page: number) {
   return props.page <= page
 }
 
@@ -85,6 +84,7 @@ setInterval(() => {
 
 // 9: lights
 const lightsRef = shallowRef()
+const lightsHelperRef = shallowRef()
 watchEffect(() => {
   if (!lightsRef.value) {
     return
@@ -109,7 +109,10 @@ watchEffect(() => {
   const directionalLightHelper = new CameraHelper(directionalLight.shadow.camera)
   lightsRef.value.add(ambientLight)
   lightsRef.value.add(directionalLight)
-  lightsRef.value.add(directionalLightHelper)
+  if (lightsHelperRef.value) {
+    lightsHelperRef.value.remove(...lightsHelperRef.value.children)
+    lightsHelperRef.value.add(directionalLightHelper)
+  }
 })
 
 // 12: models
@@ -142,9 +145,10 @@ const pixelStrength = ref(10)
 </script>
 
 <template>
-  <WindowWrapper max-height>
+  <WindowWrapper background="#E1F4FF" max-height>
     <!-- 6: canvas -->
-    <div v-if="isStep(6, 1)" class="h-full h-full bg-[#E1F4FF]" />
+    <div v-if="isStepMax(5)" class="h-full h-full bg-[#FFFFFF]" />
+    <div v-if="isStep(6, 0)" class="h-full h-full bg-[#FFFFFF]" />
 
     <TresCanvas
       v-bind="canvasProps"
@@ -167,8 +171,12 @@ const pixelStrength = ref(10)
 
       <!-- 9: lights -->
       <TresGroup
-        v-if="isStepMin(9) && showLights"
+        v-if="isStepMin(9)"
         ref="lightsRef"
+      />
+      <TresGroup
+        v-if="isStepMin(9) && showLights"
+        ref="lightsHelperRef"
       />
 
       <!-- 10: meshes -->
@@ -200,6 +208,7 @@ const pixelStrength = ref(10)
           ref="modelRef"
           :cast-shadow="isStepMin(11) && showShadow"
           path="/assets/models/mini-cartoon-keyboard.gltf"
+          :receive-shadow="isStepMin(11) && showShadow"
           @click="modelClicked"
         />
       </Suspense>
@@ -308,7 +317,7 @@ const pixelStrength = ref(10)
 
   <div
     v-if="clickedKey && isStepMin(13) && showInteraction"
-    class="absolute bottom-0 -left-115 w-110 text-right"
+    class="absolute bottom-5 -left-50 w-60 text-center bg-baseColor text-white rounded-lg p-1 rotate-[-10deg]"
   >
     {{ clickedKey }}
   </div>
