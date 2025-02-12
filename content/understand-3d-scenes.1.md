@@ -111,6 +111,7 @@ watch(dirLight, (newValue) => {
 </template>
 ```
 ````
+
   </div>
   <div>
     <span class="complementaryColor text-xl">imperative</span>
@@ -128,6 +129,7 @@ scene.value.add(dirLight)
 </template> -->
 ```
 ````
+
   </div>
 </div>
 
