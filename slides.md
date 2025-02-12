@@ -2,7 +2,7 @@
 # ==== for the whole presentation
 aspectRatio: 16/10
 author:
-  avatar: /assets/ThorstenSeyschab.jpg
+  avatar: /assets/thorsten-seyschab.jpg
   name: Thorsten Seyschab
   website: todde.tv
 canvasWidth: 1024
@@ -143,10 +143,6 @@ src: content/gltf-type-toolkit.md
 
 ---
 src: content/end.md
----
-
----
-src: content/imperative-vs-declarative.md
 ---
 
 ---

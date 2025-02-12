@@ -41,7 +41,7 @@ loader.load(
 ## TresJS (Vue/ Nuxt)
 
 ````md magic-move {lines: true}
-```vue {2-4,9-11}
+```vue {2-4,8-10}
 <script setup lang="ts">
 import { useGLTF } from '@tresjs/cientos'
 const path = '//localhost:3000/models/Island.gltf'
