@@ -110,13 +110,21 @@ src: content/understand-3d-scenes.11.md
 ---
 
 ---
-src: content/imperative-vs-declarative.md
----
-
----
 src: content/zlig-demo.md
 ---
 
 ---
 src: content/end.md
+---
+
+---
+src: content/imperative-vs-declarative.md
+---
+
+---
+src: content/load-a-gltf-file.md
+---
+
+---
+src: content/unplugin-challenges.md
 ---
