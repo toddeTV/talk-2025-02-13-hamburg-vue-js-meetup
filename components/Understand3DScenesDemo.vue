@@ -36,7 +36,7 @@ function isStepMin(page: number) {
   return props.page >= page
 }
 
-function isStepMax(page: number) {
+function _isStepMax(page: number) {
   return props.page <= page
 }
 

@@ -12,7 +12,7 @@ layout: two-cols
 ```vue {2-5,12-14}
 <script setup lang="ts">
 import {
-  EffectComposerPmndrs, 
+  EffectComposerPmndrs,
   PixelationPmndrs
 } from '@tresjs/post-processing'
 // [...]
