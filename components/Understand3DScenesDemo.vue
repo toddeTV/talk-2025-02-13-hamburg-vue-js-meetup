@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import type { TresCanvasProps } from '@tresjs/core/dist/src/components/TresCanvas.vue.js'
+import type {
+  Object3D,
+} from 'three'
 import { GLTFModel, OrbitControls } from '@tresjs/cientos'
 import { TresCanvas } from '@tresjs/core'
+import { EffectComposerPmndrs, PixelationPmndrs } from '@tresjs/post-processing'
 import {
   AmbientLight,
   CameraHelper,
   DirectionalLight,
-  Object3D,
   NoToneMapping,
   PerspectiveCamera,
   SRGBColorSpace,
@@ -46,6 +49,7 @@ const showCube = ref(true)
 const showShadow = ref(true)
 const showModel = ref(true)
 const showInteraction = ref(true)
+const showPostprocessing = ref(true)
 
 const canvasProps = ref<TresCanvasProps>({
   alpha: false,
@@ -122,7 +126,7 @@ const modelRef = shallowRef<Object3D>()
 const clickedKey = ref()
 const timeout = ref()
 function modelClicked(e) {
-  if(!showInteraction.value) {
+  if (!showInteraction.value) {
     return
   }
   // console.log(e.object.name)
@@ -132,6 +136,9 @@ function modelClicked(e) {
     clickedKey.value = ''
   }, 3000)
 }
+
+// 14: postprocessing
+const pixelStrength = ref(10)
 </script>
 
 <template>
@@ -190,11 +197,19 @@ function modelClicked(e) {
         v-if="isStepMin(12) && showModel"
       >
         <GLTFModel
+          ref="modelRef"
           :cast-shadow="isStepMin(11) && showShadow"
           path="/assets/models/mini-cartoon-keyboard.gltf"
-          ref="modelRef"
           @click="modelClicked"
         />
+      </Suspense>
+
+      <Suspense
+        v-if="isStepMin(14) && showPostprocessing"
+      >
+        <EffectComposerPmndrs>
+          <PixelationPmndrs :granularity="+pixelStrength" />
+        </EffectComposerPmndrs>
       </Suspense>
     </TresCanvas>
 
@@ -223,14 +238,6 @@ function modelClicked(e) {
       >
         Lights
       </div>
-      <input
-        v-if="isStepMin(9)"
-        v-model="directionalLightRange"
-        class="cursor-pointer w-20"
-        max="150"
-        min="60"
-        type="range"
-      >
       <div
         v-if="isStepMin(10)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
@@ -271,11 +278,38 @@ function modelClicked(e) {
       >
         Interaction
       </div>
+      <div
+        v-if="isStepMin(14)"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
+        :class="{ 'text-decoration-line': !showPostprocessing }"
+        @click="showPostprocessing = !showPostprocessing"
+      >
+        Postprocessing
+      </div>
     </div>
   </WindowWrapper>
 
-  <div class="absolute bottom-0 -left-115 w-110 text-right"
-  v-if="clickedKey && isStepMin(13) && showInteraction">
+  <input
+    v-if="isStepMin(9)"
+    v-model="directionalLightRange"
+    class="cursor-pointer w-20 absolute -bottom-5 left-16"
+    max="150"
+    min="60"
+    type="range"
+  >
+  <input
+    v-if="isStepMin(14)"
+    v-model="pixelStrength"
+    class="cursor-pointer w-20 absolute -bottom-5 left-90"
+    max="30"
+    min="0"
+    type="range"
+  >
+
+  <div
+    v-if="clickedKey && isStepMin(13) && showInteraction"
+    class="absolute bottom-0 -left-115 w-110 text-right"
+  >
     {{ clickedKey }}
   </div>
 </template>

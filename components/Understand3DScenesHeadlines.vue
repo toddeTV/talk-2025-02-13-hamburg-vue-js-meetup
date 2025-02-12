@@ -15,8 +15,9 @@ const steps = [
   'Meshes', // 6
   'Shadows', // 7
   'Models', // 8
-  'Animations & Interaction', // 9
+  'Interaction', // 9
   'Postprocessing', // 10
+  'Animations', // 11
 ]
 
 const currentStep = computed(() => {
