@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<{
 <style scoped>
 /* Browser window */
 .browser-window {
-  @apply w-full rounded-md border border-gray-300 shadow-md overflow-hidden max-h-120 h-full;
+  @apply w-full rounded-md border border-gray-300 shadow-md overflow-hidden max-h-120 h-full relative;
 }
 
 /* Browser header */

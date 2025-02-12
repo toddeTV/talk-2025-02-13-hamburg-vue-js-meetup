@@ -2,7 +2,7 @@
 import { OrbitControls } from '@tresjs/cientos'
 import { TresCanvas } from '@tresjs/core'
 import { CameraHelper, PerspectiveCamera } from 'three'
-import { shallowRef, watch } from 'vue'
+import { ref, shallowRef, watch } from 'vue'
 
 const props = defineProps<{
   page: number
@@ -18,6 +18,9 @@ function isStep(page: number | number[], click?: number | number[]) {
   }
   return pages.includes(props.page) && clicks.includes(props.click)
 }
+
+const showGrid = ref(true)
+const showCamera = ref(true)
 
 // 8: camera
 const perspectiveCamera = new PerspectiveCamera()
@@ -53,17 +56,39 @@ setInterval(() => {
       <OrbitControls />
 
       <!-- 7: world -->
-      <TresGridHelper />
-      <TresAxesHelper />
+      <TresGridHelper v-if="showGrid" />
+      <TresAxesHelper v-if="showGrid" />
 
       <!-- 8: camera -->
       <TresGroup
-        v-if="isStep(8)"
+        v-if="isStep(8) && showCamera"
         ref="cameraRef"
       />
     </TresCanvas>
+
+    <div class="absolute bottom-0 left-0 w-full z-2 flex flex-row justify-start pl-1">
+      <div
+        v-if="isStep([7,8])"
+        class="cursor-pointer text-xs text-gray-500 p-1"
+        :class="{ 'text-decoration-line': !showGrid }"
+        @click="showGrid = !showGrid"
+      >
+        Grid
+      </div>
+      <div
+        v-if="isStep(8)"
+        class="cursor-pointer text-xs text-gray-500 p-1"
+        :class="{ 'text-decoration-line': !showCamera }"
+        @click="showCamera = !showCamera"
+      >
+        Camera
+      </div>
+    </div>
   </WindowWrapper>
 </template>
 
 <style scoped>
+.text-decoration-line {
+  text-decoration-line: line-through;
+}
 </style>
