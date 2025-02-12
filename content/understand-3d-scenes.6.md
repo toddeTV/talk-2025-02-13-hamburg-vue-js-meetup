@@ -9,7 +9,7 @@ layout: two-cols
 <div class="w-full h-23"></div>
 
 ````md magic-move {lines: true}
-```vue {8-17}
+```vue {8-16}
 <script setup lang="ts">
 // [...]
 </script>
@@ -21,9 +21,7 @@ layout: two-cols
       <TresBoxGeometry :args="[2, 2, 2]" />
       <TresMeshNormalMaterial />
     </TresMesh>
-    <TresMesh
-      :position="[0, 0, 0]"
-    >
+    <TresMesh :position="[0, 0, 0]">
       <TresPlaneGeometry :args="[10, 10, 1]" />
       <TresMeshToonMaterial color="#fefefe" />
     </TresMesh>

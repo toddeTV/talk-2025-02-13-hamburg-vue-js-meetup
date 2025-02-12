@@ -9,7 +9,7 @@ layout: two-cols
 <div class="w-full h-23"></div>
 
 ````md magic-move {lines: true}
-```vue {2-4,10-12}
+```vue {2,9-11}
 <script setup lang="ts">
 import { GLTFModel } from '@tresjs/cientos'
 // [...]
