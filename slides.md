@@ -118,6 +118,14 @@ src: content/gltf-example.md
 ---
 
 ---
+src: content/load-a-gltf-file-problems.md
+---
+
+---
+src: content/load-a-gltf-file-solution.md
+---
+
+---
 src: content/end.md
 ---
 
