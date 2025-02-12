@@ -130,6 +130,10 @@ src: content/agnostic-plugin-pipeline.md
 ---
 
 ---
+src: content/gltf-type-toolkit.md
+---
+
+---
 src: content/end.md
 ---
 
