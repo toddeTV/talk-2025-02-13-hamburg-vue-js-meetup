@@ -126,6 +126,7 @@ Used programs/ softwares, services and dependencies - besides the ones in `./pac
 - [GitHub Copilot](https://github.com/features/copilot) was used in private mode for programming questions.
 - [Slidev](https://github.com/slidevjs/slidev) used for creating the slides of the talk.
 - [ChatGPT](https://chatgpt.com/) used for DALL-E image generation, text based questions and programming code generation.
+- [Figma](https://www.figma.com/) used for SVG asset creations.
 
 Used assets/ materials including images and 3D models:
 
