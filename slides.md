@@ -114,6 +114,10 @@ src: content/zlig-demo.md
 ---
 
 ---
+src: content/gltf-example.md
+---
+
+---
 src: content/end.md
 ---
 
