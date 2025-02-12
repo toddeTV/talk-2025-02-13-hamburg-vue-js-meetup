@@ -110,5 +110,9 @@ src: content/understand-3d-scenes.11.md
 ---
 
 ---
+src: content/imperative-vs-declarative.md
+---
+
+---
 src: content/end.md
 ---

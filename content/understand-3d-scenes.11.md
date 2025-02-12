@@ -9,14 +9,14 @@ layout: two-cols
 <div class="w-full h-23"></div>
 
 ````md magic-move {lines: true}
-```vue {999}
+```vue {7}
 <script setup lang="ts">
 // [...]
 </script>
 
 <template>
   <TresCanvas clear-color="E1F4FF">
-    <!-- [...] -->
+    <SomeMeshWeWantToModifyInScriptSetup />
   </TresCanvas>
 </template>
 ```
