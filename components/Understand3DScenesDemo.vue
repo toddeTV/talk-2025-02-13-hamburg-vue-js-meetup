@@ -38,6 +38,7 @@ const showLights = ref(true)
 const directionalLightRange = ref('100')
 const showPlane = ref(true)
 const showCube = ref(true)
+const showShadow = ref(true)
 
 const canvasProps = ref<TresCanvasProps>({
   alpha: false,
@@ -78,7 +79,6 @@ watchEffect(() => {
     return
   }
   lightsRef.value.remove(...lightsRef.value.children)
-
   const ambientLight = new AmbientLight(0xFFFFFF, 0)
   ambientLight.intensity = 0.5
   const directionalLight = new DirectionalLight(0xFFFFFF, 0)
@@ -96,7 +96,6 @@ watchEffect(() => {
   directionalLight.target.position.set(0, 0, 0)
   // directionalLight.shadow.camera.updateProjectionMatrix()
   const directionalLightHelper = new CameraHelper(directionalLight.shadow.camera)
-
   lightsRef.value.add(ambientLight)
   lightsRef.value.add(directionalLight)
   lightsRef.value.add(directionalLightHelper)
@@ -137,7 +136,7 @@ watchEffect(() => {
       <TresMesh
         v-if="isStepHigherEqual(10) && showPlane"
         :position="[0, -0.01, 0]"
-        receive-shadow
+        :receive-shadow="isStepHigherEqual(11) && showShadow"
         :rotation="[-Math.PI / 2, 0, 0]"
       >
         <TresPlaneGeometry :args="[10, 10, 10]" />
@@ -145,7 +144,7 @@ watchEffect(() => {
       </TresMesh>
       <TresMesh
         v-if="isStepHigherEqual(10) && showCube"
-        cast-shadow
+        :cast-shadow="isStepHigherEqual(11) && showShadow"
         :position="[0, 1, 0]"
       >
         <TresBoxGeometry
@@ -203,6 +202,14 @@ watchEffect(() => {
         @click="showCube = !showCube"
       >
         Cube
+      </div>
+      <div
+        v-if="isStepHigherEqual(11)"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
+        :class="{ 'text-decoration-line': !showShadow }"
+        @click="showShadow = !showShadow"
+      >
+        Shadow
       </div>
     </div>
   </WindowWrapper>
