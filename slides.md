@@ -2,7 +2,7 @@
 # ==== for the whole presentation
 aspectRatio: 16/10
 author:
-  avatar: /assets/ThorstenSeyschab.jpg
+  avatar: /assets/thorsten-seyschab.jpg
   name: Thorsten Seyschab
   website: todde.tv
 canvasWidth: 1024

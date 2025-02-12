@@ -51,3 +51,9 @@ leftOrientation: center
         </div>
     </div>
 </div>
+
+<!--
+- You can find me online
+- My website is always on the bottom left
+- The slides are public - link at the end
+-->
