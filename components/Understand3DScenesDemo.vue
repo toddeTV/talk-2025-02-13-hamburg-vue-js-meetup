@@ -1,8 +1,17 @@
 <script setup lang="ts">
+import type { TresCanvasProps } from '@tresjs/core/dist/src/components/TresCanvas.vue.js'
 import { OrbitControls } from '@tresjs/cientos'
 import { TresCanvas } from '@tresjs/core'
-import { AmbientLight, CameraHelper, DirectionalLight, PerspectiveCamera } from 'three'
-import { ref, shallowRef, watch } from 'vue'
+import {
+  AmbientLight,
+  CameraHelper,
+  DirectionalLight,
+  NoToneMapping,
+  PerspectiveCamera,
+  SRGBColorSpace,
+  VSMShadowMap,
+} from 'three'
+import { ref, shallowRef, watch, watchEffect } from 'vue'
 
 const props = defineProps<{
   page: number
@@ -26,8 +35,22 @@ function isStepHigherEqual(page: number) {
 const showGrid = ref(true)
 const showCamera = ref(true)
 const showLights = ref(true)
+const directionalLightRange = ref('100')
 const showPlane = ref(true)
 const showCube = ref(true)
+
+const canvasProps = ref<TresCanvasProps>({
+  alpha: false,
+  clearColor: '#82DBC5',
+  outputColorSpace: SRGBColorSpace,
+  renderMode: 'always',
+  // resize: true, // not present? hmm ... documentation says it's there and important for resizable canvas - weird
+  // `VSMShadowMap` better shadows, but more performance heavy; `BasicShadowMap` is faster but has less quality
+  shadowMapType: VSMShadowMap, // BasicShadowMap | PCFShadowMap | PCFSoftShadowMap | VSMShadowMap
+  shadows: true,
+  toneMapping: NoToneMapping,
+  useLegacyLights: false,
+})
 
 // 8: camera
 const perspectiveCamera = new PerspectiveCamera()
@@ -49,34 +72,35 @@ setInterval(() => {
 }, 1000)
 
 // 9: lights
-const ambientLight = new AmbientLight(0xFFFFFF, 0)
-ambientLight.intensity = 0.5
-const directionalLight = new DirectionalLight(0xFFFFFF, 0)
-directionalLight.castShadow = true
-directionalLight.intensity = 1.2
-directionalLight.shadow.camera.near = 5
-directionalLight.shadow.camera.far = 10
-directionalLight.shadow.camera.left = -5
-directionalLight.shadow.camera.right = 5
-directionalLight.shadow.camera.top = 5
-directionalLight.shadow.camera.bottom = -5
-directionalLight.position.set(-0.5, 3, 5)
-directionalLight.target.position.set(0, 0, 0)
-directionalLight.shadow.camera.updateProjectionMatrix()
-const directionalLightHelper = new CameraHelper(directionalLight.shadow.camera)
 const lightsRef = shallowRef()
-watch(lightsRef, (value) => {
-  if (!value) {
+watchEffect(() => {
+  if (!lightsRef.value) {
     return
   }
-  value.add(ambientLight)
-  value.add(directionalLight)
-  value.add(directionalLightHelper)
-}, {
-  immediate: true,
+  lightsRef.value.remove(...lightsRef.value.children)
+
+  const ambientLight = new AmbientLight(0xFFFFFF, 0)
+  ambientLight.intensity = 0.5
+  const directionalLight = new DirectionalLight(0xFFFFFF, 0)
+  directionalLight.castShadow = true
+  directionalLight.intensity = 1.2
+  directionalLight.shadow.camera.near = 5
+  directionalLight.shadow.camera.far = +directionalLightRange.value / 10
+  directionalLight.shadow.camera.left = -5
+  directionalLight.shadow.camera.right = 5
+  directionalLight.shadow.camera.top = 5
+  directionalLight.shadow.camera.bottom = -5
+  // directionalLight.shadow.camera.position.set(0, 3, 7)
+  // directionalLight.shadow.camera.lookAt(0, 0, 0)
+  directionalLight.position.set(5, 3, 5)
+  directionalLight.target.position.set(0, 0, 0)
+  // directionalLight.shadow.camera.updateProjectionMatrix()
+  const directionalLightHelper = new CameraHelper(directionalLight.shadow.camera)
+
+  lightsRef.value.add(ambientLight)
+  lightsRef.value.add(directionalLight)
+  lightsRef.value.add(directionalLightHelper)
 })
-setInterval(() => {
-}, 1000)
 </script>
 
 <template>
@@ -85,6 +109,8 @@ setInterval(() => {
     <div v-if="isStep(6, 1)" class="h-full h-full bg-[#E1F4FF]" />
 
     <TresCanvas
+      v-bind="canvasProps"
+      class="absolute inset-0"
       :class="{ 'opacity-0 hidden h-0! w-0!': !isStepHigherEqual(7) }"
       clear-color="#E1F4FF"
     >
@@ -111,6 +137,7 @@ setInterval(() => {
       <TresMesh
         v-if="isStepHigherEqual(10) && showPlane"
         :position="[0, -0.01, 0]"
+        receive-shadow
         :rotation="[-Math.PI / 2, 0, 0]"
       >
         <TresPlaneGeometry :args="[10, 10, 10]" />
@@ -118,6 +145,7 @@ setInterval(() => {
       </TresMesh>
       <TresMesh
         v-if="isStepHigherEqual(10) && showCube"
+        cast-shadow
         :position="[0, 1, 0]"
       >
         <TresBoxGeometry
@@ -152,6 +180,14 @@ setInterval(() => {
       >
         Lights
       </div>
+      <input
+        v-if="isStepHigherEqual(9)"
+        v-model="directionalLightRange"
+        class="cursor-pointer w-20"
+        max="150"
+        min="60"
+        type="range"
+      >
       <div
         v-if="isStepHigherEqual(10)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
