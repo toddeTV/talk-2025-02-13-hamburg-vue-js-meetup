@@ -74,5 +74,9 @@ src: content/understand-3d-scenes.2.md
 ---
 
 ---
+src: content/understand-3d-scenes.3.md
+---
+
+---
 src: content/end.md
 ---

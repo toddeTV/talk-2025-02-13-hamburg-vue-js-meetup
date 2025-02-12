@@ -21,6 +21,16 @@ function isStep(page: number | number[], click?: number | number[]) {
 <template>
   <WindowWrapper max-height>
     <div v-if="isStep(6, 1)" class="h-full h-full bg-[#E1F4FF]" />
+
+    <TresCanvas 
+      clear-color="#E1F4FF" 
+      :class="{ 'opacity-0 hidden h-0! w-0!': !isStep([7,8]) }"
+    >
+      <TresGridHelper />
+      <TresAxesHelper />
+      <TresPerspectiveCamera :position="[-13, 11, 8]" />
+      <OrbitControls />
+    </TresCanvas>
   </WindowWrapper>
 </template>
 
