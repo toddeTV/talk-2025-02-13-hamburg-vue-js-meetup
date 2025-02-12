@@ -33,4 +33,3 @@ layout: basic
   </div>
   <mdi-heart class="text-red-400 animate-bounce z-10 absolute right-23 bottom-16" />
 </div>
-
