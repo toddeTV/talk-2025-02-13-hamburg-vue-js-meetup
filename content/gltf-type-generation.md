@@ -26,15 +26,13 @@ layout: basic
 
 </v-clicks>
 
-
-
 <!--
 
 - problem with patch: we need two GLTFLoaders & a patch would patch both:
- 
+
   1. patched for plugin, version fixed, bundled
   2. original for user, version free, not bundled
-  
+
   - solution: use `three-stdlib` (extraction of the `three.js` examples directory)
 
 =========
