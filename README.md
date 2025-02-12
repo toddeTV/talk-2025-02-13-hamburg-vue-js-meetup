@@ -132,6 +132,7 @@ Used assets/ materials including images and 3D models:
 - Portrait from `Thorsten Seyschab` by [Franziska Kestel](https://franziskakestel.de/).
 - Logo for `ThreeJS` from [https://discourse.threejs.org/t/three-js-svg-logo/21835](https://discourse.threejs.org/t/three-js-svg-logo/21835).
 - Logo for `WebGL` from [https://en.m.wikipedia.org/wiki/File:WebGL_Logo.svg](https://en.m.wikipedia.org/wiki/File:WebGL_Logo.svg).
+- ["Mini Cartoon Keyboard"](https://sketchfab.com/3d-models/mini-cartoon-keyboard-9d22365e37384b31b90dc9d5b3399ddc) by Rafael Dias, licensed under [Creative Commons Attribution](https://creativecommons.org/licenses/by/4.0/).
 
 ## License
 

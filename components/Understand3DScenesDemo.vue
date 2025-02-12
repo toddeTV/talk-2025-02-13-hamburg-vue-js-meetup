@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { TresCanvasProps } from '@tresjs/core/dist/src/components/TresCanvas.vue.js'
-import { OrbitControls } from '@tresjs/cientos'
+import { OrbitControls, GLTFModel } from '@tresjs/cientos'
 import { TresCanvas } from '@tresjs/core'
 import {
   AmbientLight,
@@ -28,8 +28,12 @@ function isStep(page: number | number[], click?: number | number[]) {
   return pages.includes(props.page) && clicks.includes(props.click)
 }
 
-function isStepHigherEqual(page: number) {
+function isStepMin(page: number) {
   return props.page >= page
+}
+
+function isStepMax(page: number) {
+  return props.page <= page
 }
 
 const showGrid = ref(true)
@@ -39,6 +43,7 @@ const directionalLightRange = ref('100')
 const showPlane = ref(true)
 const showCube = ref(true)
 const showShadow = ref(true)
+const showModel = ref(true)
 
 const canvasProps = ref<TresCanvasProps>({
   alpha: false,
@@ -110,7 +115,7 @@ watchEffect(() => {
     <TresCanvas
       v-bind="canvasProps"
       class="absolute inset-0"
-      :class="{ 'opacity-0 hidden h-0! w-0!': !isStepHigherEqual(7) }"
+      :class="{ 'opacity-0 hidden h-0! w-0!': !isStepMin(7) }"
       clear-color="#E1F4FF"
     >
       <TresPerspectiveCamera :position="[-13, 11, 8]" />
@@ -122,29 +127,29 @@ watchEffect(() => {
 
       <!-- 8: camera -->
       <TresGroup
-        v-if="isStepHigherEqual(8) && showCamera"
+        v-if="isStepMin(8) && showCamera"
         ref="cameraRef"
       />
 
       <!-- 9: lights -->
       <TresGroup
-        v-if="isStepHigherEqual(9) && showLights"
+        v-if="isStepMin(9) && showLights"
         ref="lightsRef"
       />
 
-      <!-- 10: meshed -->
+      <!-- 10: meshes -->
       <TresMesh
-        v-if="isStepHigherEqual(10) && showPlane"
+        v-if="isStepMin(10) && showPlane"
         :position="[0, -0.01, 0]"
-        :receive-shadow="isStepHigherEqual(11) && showShadow"
+        :receive-shadow="isStepMin(11) && showShadow"
         :rotation="[-Math.PI / 2, 0, 0]"
       >
         <TresPlaneGeometry :args="[10, 10, 10]" />
         <TresMeshToonMaterial color="#fefefe" />
       </TresMesh>
       <TresMesh
-        v-if="isStepHigherEqual(10) && showCube"
-        :cast-shadow="isStepHigherEqual(11) && showShadow"
+        v-if="isStepMin(10) && showCube"
+        :cast-shadow="isStepMin(11) && showShadow"
         :position="[0, 1, 0]"
       >
         <TresBoxGeometry
@@ -152,11 +157,19 @@ watchEffect(() => {
         />
         <TresMeshNormalMaterial />
       </TresMesh>
+
+      <!-- 12: models -->
+        <Suspense
+        v-if="isStepMin(12) && showModel"
+        >
+      <GLTFModel path="/assets/models/mini-cartoon-keyboard.gltf" 
+      :cast-shadow="isStepMin(11) && showShadow"/>
+    </Suspense>
     </TresCanvas>
 
     <div class="absolute bottom-0 left-0 w-full z-2 flex flex-row justify-start pl-1">
       <div
-        v-if="isStepHigherEqual(7)"
+        v-if="isStepMin(7)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showGrid }"
         @click="showGrid = !showGrid"
@@ -164,7 +177,7 @@ watchEffect(() => {
         Grid
       </div>
       <div
-        v-if="isStepHigherEqual(8)"
+        v-if="isStepMin(8)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showCamera }"
         @click="showCamera = !showCamera"
@@ -172,7 +185,7 @@ watchEffect(() => {
         Camera
       </div>
       <div
-        v-if="isStepHigherEqual(9)"
+        v-if="isStepMin(9)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showLights }"
         @click="showLights = !showLights"
@@ -180,7 +193,7 @@ watchEffect(() => {
         Lights
       </div>
       <input
-        v-if="isStepHigherEqual(9)"
+        v-if="isStepMin(9)"
         v-model="directionalLightRange"
         class="cursor-pointer w-20"
         max="150"
@@ -188,7 +201,7 @@ watchEffect(() => {
         type="range"
       >
       <div
-        v-if="isStepHigherEqual(10)"
+        v-if="isStepMin(10)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showPlane }"
         @click="showPlane = !showPlane"
@@ -196,7 +209,7 @@ watchEffect(() => {
         Plane
       </div>
       <div
-        v-if="isStepHigherEqual(10)"
+        v-if="isStepMin(10)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showCube }"
         @click="showCube = !showCube"
@@ -204,12 +217,20 @@ watchEffect(() => {
         Cube
       </div>
       <div
-        v-if="isStepHigherEqual(11)"
+        v-if="isStepMin(11)"
         class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showShadow }"
         @click="showShadow = !showShadow"
       >
         Shadow
+      </div>
+      <div
+        v-if="isStepMin(12)"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
+        :class="{ 'text-decoration-line': !showModel }"
+        @click="showModel = !showModel"
+      >
+        Model
       </div>
     </div>
   </WindowWrapper>
