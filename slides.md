@@ -114,5 +114,9 @@ src: content/imperative-vs-declarative.md
 ---
 
 ---
+src: content/zlig-demo.md
+---
+
+---
 src: content/end.md
 ---
