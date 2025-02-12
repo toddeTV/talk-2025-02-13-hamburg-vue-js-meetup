@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { OrbitControls } from '@tresjs/cientos'
 import { TresCanvas } from '@tresjs/core'
-import { CameraHelper, PerspectiveCamera, AmbientLight, DirectionalLight, Object3D } from 'three'
+import { AmbientLight, CameraHelper, DirectionalLight, PerspectiveCamera } from 'three'
 import { ref, shallowRef, watch } from 'vue'
 
 const props = defineProps<{
@@ -26,6 +26,8 @@ function isStepHigherEqual(page: number) {
 const showGrid = ref(true)
 const showCamera = ref(true)
 const showLights = ref(true)
+const showPlane = ref(true)
+const showCube = ref(true)
 
 // 8: camera
 const perspectiveCamera = new PerspectiveCamera()
@@ -104,12 +106,31 @@ setInterval(() => {
         v-if="isStepHigherEqual(9) && showLights"
         ref="lightsRef"
       />
+
+      <!-- 10: meshed -->
+      <TresMesh
+        v-if="isStepHigherEqual(10) && showPlane"
+        :position="[0, -0.01, 0]"
+        :rotation="[-Math.PI / 2, 0, 0]"
+      >
+        <TresPlaneGeometry :args="[10, 10, 10]" />
+        <TresMeshToonMaterial color="#fefefe" />
+      </TresMesh>
+      <TresMesh
+        v-if="isStepHigherEqual(10) && showCube"
+        :position="[0, 1, 0]"
+      >
+        <TresBoxGeometry
+          :args="[2, 2, 2]"
+        />
+        <TresMeshNormalMaterial />
+      </TresMesh>
     </TresCanvas>
 
     <div class="absolute bottom-0 left-0 w-full z-2 flex flex-row justify-start pl-1">
       <div
         v-if="isStepHigherEqual(7)"
-        class="cursor-pointer text-xs text-gray-500 p-1"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showGrid }"
         @click="showGrid = !showGrid"
       >
@@ -117,7 +138,7 @@ setInterval(() => {
       </div>
       <div
         v-if="isStepHigherEqual(8)"
-        class="cursor-pointer text-xs text-gray-500 p-1"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showCamera }"
         @click="showCamera = !showCamera"
       >
@@ -125,11 +146,27 @@ setInterval(() => {
       </div>
       <div
         v-if="isStepHigherEqual(9)"
-        class="cursor-pointer text-xs text-gray-500 p-1"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
         :class="{ 'text-decoration-line': !showLights }"
         @click="showLights = !showLights"
       >
         Lights
+      </div>
+      <div
+        v-if="isStepHigherEqual(10)"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
+        :class="{ 'text-decoration-line': !showPlane }"
+        @click="showPlane = !showPlane"
+      >
+        Plane
+      </div>
+      <div
+        v-if="isStepHigherEqual(10)"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
+        :class="{ 'text-decoration-line': !showCube }"
+        @click="showCube = !showCube"
+      >
+        Cube
       </div>
     </div>
   </WindowWrapper>
