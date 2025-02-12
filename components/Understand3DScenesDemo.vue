@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { TresCanvasProps } from '@tresjs/core/dist/src/components/TresCanvas.vue.js'
-import { OrbitControls, GLTFModel } from '@tresjs/cientos'
+import { GLTFModel, OrbitControls } from '@tresjs/cientos'
 import { TresCanvas } from '@tresjs/core'
 import {
   AmbientLight,
   CameraHelper,
   DirectionalLight,
+  Object3D,
   NoToneMapping,
   PerspectiveCamera,
   SRGBColorSpace,
@@ -44,6 +45,7 @@ const showPlane = ref(true)
 const showCube = ref(true)
 const showShadow = ref(true)
 const showModel = ref(true)
+const showInteraction = ref(true)
 
 const canvasProps = ref<TresCanvasProps>({
   alpha: false,
@@ -105,6 +107,31 @@ watchEffect(() => {
   lightsRef.value.add(directionalLight)
   lightsRef.value.add(directionalLightHelper)
 })
+
+// 12: models
+const modelRef = shallowRef<Object3D>()
+// watch(modelRef, (model) => {
+//   if(!model) {
+//     return
+//   }
+//   console.dir(model)
+//   model.position.set(100, 0, 0)
+// }, {
+//   immediate: true,
+// })
+const clickedKey = ref()
+const timeout = ref()
+function modelClicked(e) {
+  if(!showInteraction.value) {
+    return
+  }
+  // console.log(e.object.name)
+  clickedKey.value = `"${e.object.name}" clicked`
+  clearTimeout(timeout.value)
+  timeout.value = setTimeout(() => {
+    clickedKey.value = ''
+  }, 3000)
+}
 </script>
 
 <template>
@@ -159,12 +186,16 @@ watchEffect(() => {
       </TresMesh>
 
       <!-- 12: models -->
-        <Suspense
+      <Suspense
         v-if="isStepMin(12) && showModel"
-        >
-      <GLTFModel path="/assets/models/mini-cartoon-keyboard.gltf" 
-      :cast-shadow="isStepMin(11) && showShadow"/>
-    </Suspense>
+      >
+        <GLTFModel
+          :cast-shadow="isStepMin(11) && showShadow"
+          path="/assets/models/mini-cartoon-keyboard.gltf"
+          ref="modelRef"
+          @click="modelClicked"
+        />
+      </Suspense>
     </TresCanvas>
 
     <div class="absolute bottom-0 left-0 w-full z-2 flex flex-row justify-start pl-1">
@@ -232,8 +263,21 @@ watchEffect(() => {
       >
         Model
       </div>
+      <div
+        v-if="isStepMin(13)"
+        class="cursor-pointer text-xs text-gray-500 p-1 select-none"
+        :class="{ 'text-decoration-line': !showInteraction }"
+        @click="showInteraction = !showInteraction"
+      >
+        Interaction
+      </div>
     </div>
   </WindowWrapper>
+
+  <div class="absolute bottom-0 -left-115 w-110 text-right"
+  v-if="clickedKey && isStepMin(13) && showInteraction">
+    {{ clickedKey }}
+  </div>
 </template>
 
 <style scoped>
