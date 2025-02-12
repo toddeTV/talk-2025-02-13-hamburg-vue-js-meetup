@@ -126,6 +126,10 @@ src: content/load-a-gltf-file-solution.md
 ---
 
 ---
+src: content/agnostic-plugin-pipeline.md
+---
+
+---
 src: content/end.md
 ---
 
