@@ -2,7 +2,7 @@
 layout: basic
 ---
 
-# load a glTF file - Problems
+# Load a glTF file - Problems
 
 <v-clicks>
 
