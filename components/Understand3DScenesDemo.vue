@@ -328,7 +328,4 @@ const pixelStrength = ref(10)
 </template>
 
 <style scoped>
-.text-decoration-line {
-  text-decoration-line: line-through;
-}
 </style>

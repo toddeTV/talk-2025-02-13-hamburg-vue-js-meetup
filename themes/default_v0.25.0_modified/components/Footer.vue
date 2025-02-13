@@ -5,8 +5,17 @@ import { computed } from 'vue'
 // const { $slidev } = useSlideContext()
 const { currentPage, total } = useNav()
 
+const subtractFromTotalPageCount = configs.themeConfig.subtractFromTotalPageCount
+  ? +configs.themeConfig.subtractFromTotalPageCount
+  : 0
+
+const pageCurrent = computed(() => currentPage.value)
+const pageTotal = computed(() => total.value)
+const pageTotalFake = computed(() => total.value - subtractFromTotalPageCount)
+const isAfterLastSlide = computed(() => pageCurrent.value > pageTotalFake.value)
+
 const pageProcess = computed(() => {
-  const process = Math.round(((currentPage.value * 100) / total.value) * 100) / 100
+  const process = Math.round(((pageCurrent.value * 100) / pageTotalFake.value) * 100) / 100
   if (process < 0)
     return 0
   if (process > 100)
@@ -27,9 +36,21 @@ const pageProcess = computed(() => {
         <mdi-web class="baseColor mr-1" />
         {{ configs.author.website }}
       </MyLink>
-      <div class="baseColor">
-        <span>{{ currentPage }}</span>
-        <span v-if="configs.themeConfig.showTotalPageCount"> / {{ total }}</span>
+      <div class="baseColor flex gap-1">
+        <span>{{ pageCurrent }}</span>
+        <span
+          v-if="configs.themeConfig.showTotalPageCount"
+        >/</span>
+        <span
+          v-if="configs.themeConfig.showTotalPageCount"
+          :class="{ 'text-decoration-line text-gray-400': isAfterLastSlide }"
+        >{{ pageTotalFake }}</span>
+        <div class="w-0 h-0 relative">
+          <span
+            v-if="configs.themeConfig.showTotalPageCount && isAfterLastSlide"
+            class="absolute left-0.5 top-0 text-right"
+          >{{ pageTotal }}</span>
+        </div>
       </div>
     </div>
   </footer>

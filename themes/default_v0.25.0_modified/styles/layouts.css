@@ -22,6 +22,10 @@
   background-color: var(--slidev-theme-complementary);
 }
 
+.text-decoration-line {
+  text-decoration-line: line-through;
+}
+
 .slidev-layout {
   /* TODO remove in prod*/
   @apply border;
