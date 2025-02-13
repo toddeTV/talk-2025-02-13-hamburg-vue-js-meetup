@@ -17,11 +17,11 @@ layout: basic
 <VClicks class="text-xl flex flex-col gap-y-5">
 
 - Why 3D on the web?<br>
-  <span class="text-sm color-gray-500">Identify potential use-cases and think outside the box.</span>
+  <span class="text-sm color-gray-500">Identify potential use-cases.</span>
 - Understand 3D scenes in Vue<br>
   <span class="text-sm color-gray-500">Setup, Tooling, Hardware Pipeline, Scene-Graph, etc.</span>
-- Showcase with real problem<br>
-  <span class="text-sm color-gray-500">Pinpoint problems others could encounter as well and think of solutions for all.</span>
+- Showcase with a real problem<br>
+  <span class="text-sm color-gray-500">Pinpoint problems others could encounter as well and think of solutions for everybody.</span>
 - Extend with build tool agnostic plugin<br>
   <span class="text-sm color-gray-500">For using with Vite, esbuild, Rollup, Rspack, Webpack, etc.</span>
 
