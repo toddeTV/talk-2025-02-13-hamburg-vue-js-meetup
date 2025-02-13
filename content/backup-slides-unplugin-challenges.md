@@ -24,6 +24,6 @@ layout: basic
   - solution is to simply generate fixed filenames that bundlers take without modifications
 
 - <ant-design-frown-filled class="text-red-400" /> no unified way to detect dev/serve VS build
-  - solution: custom checks for the bundlers which have this distinction and where it is possible to detect this
+  - Solution: custom checks for the bundlers which have this distinction and where it is possible to detect this
 
 </v-clicks>
