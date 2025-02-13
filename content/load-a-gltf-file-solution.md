@@ -2,7 +2,7 @@
 layout: basic
 ---
 
-# load a glTF file - Problems Solutions
+# Load a glTF file - Problems Solutions
 
 <div class="absolute w-38 left-79 top-14" v-mark="{ at: 0, color: '#ab2657', type: 'underline' }"></div>
 <div class="absolute w-38 left-79 top-15" v-mark="{ at: 0, color: '#ab2657', type: 'underline' }"></div>

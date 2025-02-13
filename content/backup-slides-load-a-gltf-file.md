@@ -2,7 +2,7 @@
 layout: two-cols
 ---
 
-# load a glTF file
+# Load a glTF file
 
 ::left::
 
