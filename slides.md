@@ -44,6 +44,8 @@ themeConfig:
   complementary: '#ab2657'
   showPageProcessBar: true
   showTotalPageCount: false
+  # e.g. when you have backup slides after the end slide and don't whant them to be added to the total page count
+  subtractFromTotalPageCount: 3
 title: 3D or Not 3D? Vue and Beyond! (talk on 2025-02-13 at the Hamburg Vue.js Meetup in Hamburg.)
 titleTemplate: '%s'
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
